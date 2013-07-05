@@ -5,6 +5,10 @@ class Validator {
 
     public function isValid($phoneNumber)
     {
-        return is_numeric($phoneNumber);
+        $phoneNumber = preg_replace('/[^0-9\+]/', '', $phoneNumber);
+        if (preg_match('/^\+?[0-9]{8,12}$/', $phoneNumber)) {
+            return true;
+        }
+        return false;
     }
 }
